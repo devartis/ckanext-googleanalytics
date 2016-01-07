@@ -3,7 +3,6 @@ from sqlalchemy.sql import select, text
 from sqlalchemy import func
 
 import ckan.model as model
-from ckan.model.authz import PSEUDO_USER__VISITOR
 from ckan.lib.base import *
 
 cached_tables = {}
@@ -78,6 +77,7 @@ def get_resource_visits_for_url(url):
 
 
 def get_top_packages(limit=20):
+    from ckan.model.authz import PSEUDO_USER__VISITOR
     items = []
     authorizer = Authorizer()
     q = authorizer.authorized_query(PSEUDO_USER__VISITOR,
